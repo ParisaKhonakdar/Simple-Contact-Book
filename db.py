@@ -1,3 +1,4 @@
+
 import json
 import os
 
@@ -26,3 +27,14 @@ def list_contacts():
     else:
         for i, contact in enumerate(contacts, start=1):
             print(f"{i}. {contact['name']} - {contact['phone']}")
+
+def delete_contact(name_to_delete):
+    contacts = load_contacts()
+    # Filter out contacts that match the name (case-insensitive)
+    filtered_contacts = [c for c in contacts if c["name"].lower() != name_to_delete.lower()]
+
+    if len(contacts) == len(filtered_contacts):
+        print(f"No contact found with the name: {name_to_delete}")
+    else:
+        save_contacts(filtered_contacts)
+        print(f"Contact '{name_to_delete}' deleted successfully.")
