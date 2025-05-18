@@ -38,3 +38,21 @@ def delete_contact(name_to_delete):
     else:
         save_contacts(filtered_contacts)
         print(f"Contact '{name_to_delete}' deleted successfully.")
+def edit_contact(name_to_edit):
+    contacts = load_contacts()
+    for contact in contacts:
+        if contact["name"].lower() == name_to_edit.lower():
+            print(f"Found contact: {contact['name']} - {contact['phone']}")
+            new_name = input("Enter new name (or press Enter to keep current): ").strip()
+            new_phone = input("Enter new phone number (or press Enter to keep current): ").strip()
+
+            if new_name:
+                contact["name"] = new_name
+            if new_phone:
+                contact["phone"] = new_phone
+
+            save_contacts(contacts)
+            print("Contact updated successfully!")
+            return
+
+    print("Contact not found.")
