@@ -6,8 +6,11 @@ FILE_NAME = "contacts.json"
 
 def load_contacts():
     if os.path.exists(FILE_NAME):
-        with open(FILE_NAME, "r") as file:
-            return json.load(file)
+        try:    
+            with open(FILE_NAME, "r") as file:
+                 return json.load(file)
+        except json.JSONDecodeError:
+            print("Warning: contacts file is corrupted.")
     return []
 
 def save_contacts(contacts):

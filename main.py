@@ -14,7 +14,10 @@ def main():
         if choice == "1":
             name = input("Enter name: ")
             phone = input("Enter phone number: ")
-            add_contact(name, phone)
+            if not name or not phone:
+                print("Name and phone number cannot be empty!")
+            else:
+                add_contact(name, phone)
         elif choice == "2":
             list_contacts()
         elif choice == "3":
